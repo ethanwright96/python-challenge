@@ -1,16 +1,20 @@
 import os
 import csv
 
+#Name file path 
 file_path = os.path.join("Resources", "election_data.csv")
 
+#Read csv file
 with open (file_path) as poll:
     csv_reader=csv.reader(poll,delimiter=",")
     next(csv_reader)
 
+    #Create empty lists to later append
     id = []
     county = []
     candidates = []
 
+    #Write for loop to append empty lists
     for row in csv_reader:
         id.append((row[0]))
         county.append((row[1]))
@@ -32,7 +36,7 @@ def unique_obs(list):
 unique_candidates = unique_obs(candidates)
 
 #Define a user function to output a list of each candidates vote count
-#Pseudocode: If the candidate name is equal to option 1, count 1 toward option 1's count... etc. for each option. 
+#Pseudocode: If the candidate name is equal to option a, count 1 toward option a's count (for a, b, and c)
 
 def counter(list,a,b,c):
     count_a = 0
@@ -47,6 +51,7 @@ def counter(list,a,b,c):
 
     return [count_a,count_b,count_c]
 
+#Use counter function to harvest vote counts for each candidate in list form
 vote_counts = counter(candidates,unique_candidates[0],unique_candidates[1],unique_candidates[2])
 
 #Find the winner's name by indexing
@@ -64,7 +69,7 @@ percentages = []
 for i in vote_counts:
     percentages.append(percent(i,total_votes))
 
-#Concatinate results and assign to variable name "results"
+#Concatenate results and assign to variable name "results"
 results = ("Election Results:"
 f"\nTotal Votes: {total_votes}"
 f"\n{unique_candidates[0]}: {percentages[0]}% ({vote_counts[0]})"
@@ -74,7 +79,7 @@ f"\nWinner: {winner_name}!")
 
 print(results)
 
-#Write results into .txt file, joining path to analysis folder
+#Write results into .txt file, joining path with analysis folder and file name
 with open (os.path.join("analysis","election_results.txt"), 'w') as file:
     file.write(results)
     file.close()
