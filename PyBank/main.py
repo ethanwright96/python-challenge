@@ -1,18 +1,15 @@
 import os
 import csv
 
-# absolute_path = "C:\Users\e.a.wright\python-challenge\PyBank\Resources\budget_data.csv"
-# relative_path = "PyBank\Resources\budget_data.csv"
-
 #Name file path 
 file_path = os.path.join("Resources", "budget_data.csv")
 
-#Read in csv file using csv module
+#Read csv file
 with open (file_path) as budget_data:
     csv_reader=csv.reader(budget_data,delimiter=",")
     next(csv_reader)
     
-    #Create empty lists to later append with csv's data
+    #Create empty lists to later append
     date = []
     profit_loss = []
     change = []
@@ -23,7 +20,7 @@ with open (file_path) as budget_data:
         profit_loss.append(int(row[1]))
         
 #Calculate total months and total profit/losses
-total_months = len(date) #86
+total_months = len(date)
 total = sum(profit_loss)
 
 #Write for loop to find monthly change in profit/losses (current observation - former observation) 
@@ -38,6 +35,7 @@ average_change = round(sum(change)/(total_months-1),2)
 greatest_increase = max(change)
 greatest_decrease = min(change)
 
+#Write function designed to index match
 def find(lst,a,b):
     for x in lst:
         if x == a:
@@ -48,7 +46,7 @@ def find(lst,a,b):
 gi_date = find(change,greatest_increase,date)
 gd_date = find(change,greatest_decrease,date)
 
-#Concatinate results into string
+#Concatenate results into string
 results = ("Financial Analysis:"
 f"\nTotal Months: {total_months}"
 f"\nTotal: ${total}"
@@ -58,7 +56,7 @@ f"\nGreatest Decrease in Profits: {gd_date} (${greatest_decrease})")
 
 print(results)
 
-#Write results into .txt file, joining path to analysis folder
+#Write results into .txt file, joining path with analysis folder and file name
 with open (os.path.join("analysis","financial_analysis.txt"), 'w') as file:
     file.write(results)
     file.close()
