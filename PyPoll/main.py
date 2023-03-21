@@ -27,7 +27,7 @@ total_votes = len(id)
 #Pseudocode: If the current candidate name is not equal to any of those already appended to unique_candidates, then append it to the list
 
 def unique_obs(list):
-      unique = [list[0]]
+      unique = []
       for obs in list:
           if obs not in unique:
               unique.append(obs)
