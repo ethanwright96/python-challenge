@@ -47,6 +47,7 @@ gd_date = find(change,greatest_decrease,date)
 
 #Concatenate results into string and assign to variable
 results = ("Financial Analysis:"
+"\n--------------------------"
 f"\nTotal Months: {total_months}"
 f"\nTotal: ${total_profit}"
 f"\nAverage Change: ${average_change}"

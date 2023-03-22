@@ -9,7 +9,7 @@ with open (file_path) as poll:
     csv_reader=csv.reader(poll,delimiter=",")
     next(csv_reader)
 
-    #Create empty lists to later append
+    #Create empty lists to append
     id = []
     county = []
     candidates = []
@@ -23,7 +23,7 @@ with open (file_path) as poll:
 #Find the total number of votes using the length of the "Ballot ID" column
 total_votes = len(id)
 
-#Define function to find unique names in list 
+#Define function to indentify unique names in "Candidate" vector
 #Pseudocode: If the current candidate name is not equal to any of those already appended to unique_candidates, then append it to the list
 
 def unique_obs(list):
@@ -51,7 +51,7 @@ def counter(list,a,b,c):
 
     return [count_a,count_b,count_c]
 
-#Use counter function to harvest vote counts for each candidate in list form
+#Use counter() to harvest vote counts for each unique candidate in list form
 vote_counts = counter(candidates,unique_candidates[0],unique_candidates[1],unique_candidates[2])
 
 #Find the winner's name by indexing
@@ -71,11 +71,15 @@ for i in vote_counts:
 
 #Concatenate results and assign to variable name "results"
 results = ("Election Results:"
+"\n------------------------"
 f"\nTotal Votes: {total_votes}"
+"\n------------------------"
 f"\n{unique_candidates[0]}: {percentages[0]}% ({vote_counts[0]})"
 f"\n{unique_candidates[1]}: {percentages[1]}% ({vote_counts[1]})"
 f"\n{unique_candidates[2]}: {percentages[2]}%  ({vote_counts[2]})"
-f"\nWinner: {winner_name}!")
+"\n------------------------"
+f"\nWinner: {winner_name}!"
+"\n------------------------")
 
 print(results)
 
