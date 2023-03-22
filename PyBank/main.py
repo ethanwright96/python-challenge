@@ -12,8 +12,6 @@ with open (file_path) as budget_data:
     #Create empty lists to later append
     date = []
     profit_loss = []
-    change = []
-
     #Write for loop to append empty lists of for date and profit_loss
     for row in csv_reader:
         date.append((row[0])) 
@@ -21,9 +19,10 @@ with open (file_path) as budget_data:
         
 #Calculate total months and total profit/losses
 total_months = len(date)
-total = sum(profit_loss)
+total_profit = sum(profit_loss)
 
 #Write for loop to find monthly change in profit/losses (current observation - former observation) 
+change = []
 for i in range(0,86):
     if i == 0:
         change.append(0)
@@ -42,14 +41,14 @@ def find(lst,a,b):
             i = lst.index(x)
             result = b[i]
     return result
-
+#Apply find() to find extremes and assign to variables
 gi_date = find(change,greatest_increase,date)
 gd_date = find(change,greatest_decrease,date)
 
-#Concatenate results into string
+#Concatenate results into string and assign to variable
 results = ("Financial Analysis:"
 f"\nTotal Months: {total_months}"
-f"\nTotal: ${total}"
+f"\nTotal: ${total_profit}"
 f"\nAverage Change: ${average_change}"
 f"\nGreatest Increase in Profits: {gi_date} (${greatest_increase})"
 f"\nGreatest Decrease in Profits: {gd_date} (${greatest_decrease})")
