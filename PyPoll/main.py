@@ -23,7 +23,7 @@ with open (file_path) as poll:
 #Find the total number of votes using the length of the "Ballot ID" column
 total_votes = len(id)
 
-#Create a list of the candidates who received votes 
+#Define function to find unique names in list 
 #Pseudocode: If the current candidate name is not equal to any of those already appended to unique_candidates, then append it to the list
 
 def unique_obs(list):
